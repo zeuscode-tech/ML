@@ -1,0 +1,101 @@
+=== Данные ===
+Количество сообщений: 5572
+label
+ham     4825
+spam     747
+Name: count, dtype: int64
+
+=== Примеры предобработки ===
+
+Пример 1
+До:    Go until jurong point, crazy.. Available only in bugis n great world la e buffet... Cine there got amore wat...
+После: jurong point crazy available bugis n great world la e buffet cine got amore wat
+
+Пример 2
+До:    Ok lar... Joking wif u oni...
+После: ok lar joking wif u oni
+
+Пример 3
+До:    Free entry in 2 a wkly comp to win FA Cup final tkts 21st May 2005. Text FA to 87121 to receive entry question(std txt rate)T&C's apply 08452810075over18's
+После: free entry wkly comp win fa cup final tkts st text fa receive entry question std txt rate t c s apply s
+
+Пример 4
+До:    U dun say so early hor... U c already then say...
+После: u dun say early hor u c say
+
+Пример 5
+До:    Nah I don't think he goes to usf, he lives around here though
+После: nah not think goes usf lives
+
+=== Обучение ===
+Train: 4457
+Test:  1115
+Размерность TF-IDF train: (4457, 5000)
+Размер словаря: 5000
+
+=== Метрики на тестовой выборке ===
+Accuracy:  0.9785
+Precision: 1.0000
+Recall:    0.8389
+F1:        0.9124
+
+=== Classification report ===
+              precision    recall  f1-score   support
+
+         ham     0.9758    1.0000    0.9877       966
+        spam     1.0000    0.8389    0.9124       149
+
+    accuracy                         0.9785      1115
+   macro avg     0.9879    0.9195    0.9501      1115
+weighted avg     0.9790    0.9785    0.9777      1115
+
+=== Матрица ошибок ===
+[[966   0]
+ [ 24 125]]
+
+=== Пять ошибок модели ===
+
+Ошибка 1
+Истинный класс: spam
+Предсказание: ham
+Уверенность: 0.9867
+Текст: Sorry I missed your call let's talk when you have the time. I'm on 07090201529
+После очистки: sorry missed let s talk time m
+Гипотеза: Спам похож на обычное личное сообщение или содержит редкие слова, которых мало в обучении.
+
+Ошибка 2
+Истинный класс: spam
+Предсказание: ham
+Уверенность: 0.9855
+Текст: Do you realize that in about 40 years, we'll have thousands of old ladies running around with tattoos?
+После очистки: realize years ll thousands old ladies running tattoos
+Гипотеза: Спам похож на обычное личное сообщение или содержит редкие слова, которых мало в обучении.
+
+Ошибка 3
+Истинный класс: spam
+Предсказание: ham
+Уверенность: 0.9592
+Текст: For sale - arsenal dartboard. Good condition but no doubles or trebles!
+После очистки: sale arsenal dartboard good condition no doubles trebles
+Гипотеза: Спам похож на обычное личное сообщение или содержит редкие слова, которых мало в обучении.
+
+Ошибка 4
+Истинный класс: spam
+Предсказание: ham
+Уверенность: 0.9323
+Текст: Email AlertFrom: Jeri StewartSize: 2KBSubject: Low-cost prescripiton drvgsTo listen to email call 123
+После очистки: email alertfrom jeri stewartsize kbsubject low cost prescripiton drvgsto listen email
+Гипотеза: Спам похож на обычное личное сообщение или содержит редкие слова, которых мало в обучении.
+
+Ошибка 5
+Истинный класс: spam
+Предсказание: ham
+Уверенность: 0.9039
+Текст: 1000's of girls many local 2 u who r virgins 2 this & r ready 2 4fil ur every sexual need. Can u 4fil theirs? text CUTE to 69911(£1.50p. m)
+После очистки: s girls local u r virgins r ready fil ur sexual need u fil theirs text cute p m
+Гипотеза: Спам похож на обычное личное сообщение или содержит редкие слова, которых мало в обучении.
+
+=== Созданные файлы ===
+confusion_matrix.png
+all_errors.csv
+top5_errors.csv
