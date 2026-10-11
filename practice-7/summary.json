@@ -1,0 +1,13 @@
+{
+  "best_params": {
+    "n_estimators": 200,
+    "max_depth": 8,
+    "min_samples_leaf": 4
+  },
+  "best_cv_roc_auc": 0.8472199349538583,
+  "oob_accuracy": 0.7632232871849485,
+  "train_size": 5634,
+  "test_size": 1409,
+  "original_features": 19,
+  "transformed_features": 45
+}

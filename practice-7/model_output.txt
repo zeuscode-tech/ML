@@ -1,0 +1,52 @@
+=== Данные ===
+Файл: /Users/zeus/ML/practice-5/data/WA_Fn-UseC_-Telco-Customer-Churn.csv
+Объектов: 7043, исходных признаков: 19
+Train: 5634, test: 1409
+Доля Churn=Yes: 0.2654
+
+=== GridSearchCV ===
+Комбинаций: 27
+Fitting 5 folds for each of 27 candidates, totalling 135 fits
+Лучшие параметры: {'model__max_depth': 8, 'model__min_samples_leaf': 4, 'model__n_estimators': 200}
+Лучший средний CV ROC-AUC: 0.8472
+
+=== Сравнение на одном test split ===
+                model  accuracy  precision  recall     f1  roc_auc  tn  fp  fn  tp
+        Decision tree    0.7204     0.4745  0.4973 0.4856   0.6489 829 206 188 186
+Random forest default    0.7807     0.6117  0.4759 0.5353   0.8160 922 113 196 178
+  Random forest tuned    0.7580     0.5302  0.7754 0.6298   0.8423 778 257  84 290
+
+Размерность после preprocessing: (5634, 45)
+OOB accuracy настроенного леса: 0.7632
+
+=== Важность исходных признаков ===
+         feature  importance
+        Contract    0.235094
+          tenure    0.124706
+  OnlineSecurity    0.097607
+ InternetService    0.089255
+    TotalCharges    0.088382
+     TechSupport    0.079674
+   PaymentMethod    0.056102
+  MonthlyCharges    0.054285
+    OnlineBackup    0.032882
+ StreamingMovies    0.024594
+DeviceProtection    0.021090
+     StreamingTV    0.020527
+PaperlessBilling    0.018551
+   MultipleLines    0.012656
+      Dependents    0.012655
+         Partner    0.010995
+          gender    0.010876
+   SeniorCitizen    0.005309
+    PhoneService    0.004762
+
+=== Удаление наименее важных признаков ===
+ removed_count                                                                          removed_features  accuracy  precision  recall     f1  roc_auc  f1_delta  roc_auc_delta
+             0                                                                                         —    0.7580     0.5302  0.7754 0.6298   0.8423    0.0000         0.0000
+             1                                                                              PhoneService    0.7615     0.5348  0.7807 0.6348   0.8424    0.0050         0.0001
+             3                                                       PhoneService, SeniorCitizen, gender    0.7594     0.5321  0.7754 0.6311   0.8419    0.0014        -0.0004
+             5                                  PhoneService, SeniorCitizen, gender, Partner, Dependents    0.7630     0.5368  0.7807 0.6362   0.8427    0.0064         0.0004
+             7 PhoneService, SeniorCitizen, gender, Partner, Dependents, MultipleLines, PaperlessBilling    0.7566     0.5288  0.7620 0.6243   0.8389   -0.0054        -0.0034
+
+Созданы CSV, summary.json и feature_importance.png
