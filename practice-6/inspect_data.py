@@ -1,7 +1,10 @@
 import pandas as pd
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
 
 data = pd.read_csv(
-    "data/SMSSpamCollection",
+    HERE / "data" / "SMSSpamCollection",
     sep="\t",
     names=["label", "text"],
 )

@@ -25,7 +25,8 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import Pipeline
 
 
-DATA_PATH = Path("data/SMSSpamCollection")
+HERE = Path(__file__).resolve().parent
+DATA_PATH = HERE / "data" / "SMSSpamCollection"
 RANDOM_STATE = 42
 
 # Отрицания нельзя удалять: они могут менять смысл текста.
@@ -258,7 +259,7 @@ def main():
     plt.title("Матрица ошибок: SMS Spam")
     plt.tight_layout()
     plt.savefig(
-        "confusion_matrix.png",
+        HERE / "confusion_matrix.png",
         dpi=160,
     )
     plt.close()
@@ -318,13 +319,13 @@ def main():
     )
 
     errors.to_csv(
-        "all_errors.csv",
+        HERE / "all_errors.csv",
         index=False,
     )
 
     top_errors = errors.head(5).copy()
     top_errors.to_csv(
-        "top5_errors.csv",
+        HERE / "top5_errors.csv",
         index=False,
     )
 
