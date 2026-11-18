@@ -1,0 +1,62 @@
+=== Данные ===
+Объектов: 3000
+Признаков: 11
+Пропусков: 0
+Development: (2400, 11)
+Test: (600, 11)
+Доля churn=1: 0.3713
+
+=== Подбор архитектуры MLP ===
+(16,)        ROC-AUC=0.7711 ± 0.0152, время=1.150 с
+(32,)        ROC-AUC=0.7589 ± 0.0136, время=0.969 с
+(64,)        ROC-AUC=0.7637 ± 0.0109, время=0.200 с
+(32, 16)     ROC-AUC=0.7610 ± 0.0042, время=0.937 с
+(64, 32)     ROC-AUC=0.7651 ± 0.0034, время=0.967 с
+
+Лучшая архитектура: (16,)
+Лучший ROC-AUC CV: 0.7711
+
+=== Лучшая MLP ===
+Архитектура: (16,)
+Эпох выполнено: 57
+Ранняя остановка: True
+Accuracy test: 0.745
+F1 test: 0.6185
+ROC-AUC test: 0.8005
+
+=== MLP против XGBoost ===
+  model accuracy_train accuracy_test f1_test roc_auc_train roc_auc_test fit_time_sec  epochs         architecture
+    MLP         0.7458        0.7450  0.6185        0.7964       0.8005       0.1756      57                (16,)
+XGBoost         0.7779        0.7383  0.5858        0.8444       0.7884       0.0773      70 70 деревьев, depth=3
+
+=== Стабильность моделей ===
+MLP      state=1   F1=0.6131 AUC=0.7971
+XGBoost  state=1   F1=0.5858 AUC=0.7884
+MLP      state=7   F1=0.5393 AUC=0.7566
+XGBoost  state=7   F1=0.5858 AUC=0.7884
+MLP      state=21  F1=0.6051 AUC=0.7957
+XGBoost  state=21  F1=0.5858 AUC=0.7884
+MLP      state=42  F1=0.6185 AUC=0.8005
+XGBoost  state=42  F1=0.5858 AUC=0.7884
+MLP      state=99  F1=0.5964 AUC=0.7936
+XGBoost  state=99  F1=0.5858 AUC=0.7884
+
+=== Средняя стабильность ===
+  model roc_auc_mean roc_auc_std f1_mean f1_std time_mean
+    MLP       0.7887      0.0181  0.5945 0.0320    0.1348
+XGBoost       0.7884      0.0000  0.5858 0.0000    0.0730
+
+=== Итоговый вывод ===
+MLP показала более высокий средний ROC-AUC, но необходимо учитывать время и стабильность.
+На табличных данных умеренного размера нейронная сеть не гарантирует преимущество перед бустингом.
+Применение MLP оправдано только при подтверждённом выигрыше на честной валидации.
+
+=== Созданные файлы ===
+architecture_results.csv
+architecture_comparison.png
+mlp_loss_curve.png
+model_comparison.csv
+model_comparison.png
+stability_results.csv
+stability_summary.csv
+stability_comparison.png

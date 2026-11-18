@@ -1,0 +1,33 @@
+=== Данные ===
+Train: (450, 2)
+Test: (150, 2)
+Классы train: [225 225]
+
+=== Численная проверка градиентов ===
+parameter  max_relative_error
+       W1        2.576126e-08
+       b1        1.243279e-09
+       W2        3.416227e-11
+       b2        1.044852e-11
+Максимальная относительная ошибка: 2.5761258248223516e-08
+Проверка пройдена: градиенты реализованы правильно.
+
+=== NumPy против sklearn ===
+implementation activation accuracy_test roc_auc_test fit_time_sec  epochs final_loss
+         NumPy       relu        0.9267       0.9794       0.1398    1500   0.198733
+       sklearn       relu        0.9533       0.9913       0.0676     230   0.133425
+         NumPy       tanh        0.8800       0.9520       0.2269    1500   0.277433
+       sklearn       tanh        0.9533       0.9906       0.0992     338   0.133734
+
+=== Вывод ===
+Лучший вариант: sklearn relu
+ROC-AUC: 0.9913
+Ручная реализация выполняет прямое распространение, backpropagation и обновление весов без sklearn.
+Численная проверка подтверждает правильность аналитических градиентов.
+ReLU и tanh могут сходиться с разной скоростью, поэтому выбор активации проверяется экспериментально.
+
+=== Созданные файлы ===
+gradient_check.csv
+numpy_network_results.csv
+numpy_loss_comparison.png
+numpy_decision_boundaries.png
