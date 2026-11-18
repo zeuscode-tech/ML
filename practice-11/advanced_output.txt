@@ -1,0 +1,36 @@
+=== Данные ===
+Объектов: 569
+Признаков: 30
+Классы: [212 357]
+PCA          время=0.002 с  trustworthiness=0.8713
+t-SNE        время=1.435 с  trustworthiness=0.9519
+UMAP         время=4.912 с  trustworthiness=0.9280
+
+=== Работа с новыми объектами ===
+PCA имеет transform: True
+t-SNE имеет transform: False
+UMAP имеет transform: True
+
+=== Итоговое сравнение ===
+method time_sec trustworthiness  supports_transform
+   PCA    0.002          0.8713                True
+ t-SNE    1.435          0.9519               False
+  UMAP    4.912          0.9280                True
+
+=== t-SNE: влияние perplexity ===
+ perplexity time_sec trustworthiness
+          5    1.218          0.9442
+         30    1.108          0.9519
+         50    1.273          0.9447
+
+=== Вывод ===
+PCA работает быстро, сохраняет глобальную структуру и может использоваться внутри ML-пайплайна.
+t-SNE хорошо показывает локальные группы, но не имеет корректного transform для новых объектов, поэтому обычно используется только для визуализации.
+UMAP сохраняет локальную структуру и поддерживает transform, поэтому его можно применять и к новым объектам.
+Результат t-SNE зависит от perplexity, поэтому выводы нельзя делать только по одному запуску.
+
+=== Созданные файлы ===
+embedding_comparison.png
+tsne_perplexity.png
+embedding_results.csv
+tsne_perplexity_results.csv
