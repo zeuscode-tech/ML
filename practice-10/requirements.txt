@@ -1,2 +1,6 @@
-pandas==2.3.3
-scikit-learn==1.6.1
+numpy
+pandas
+matplotlib
+seaborn
+scikit-learn
+scipy
