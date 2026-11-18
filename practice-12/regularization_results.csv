@@ -1,0 +1,3 @@
+penalty,best_C,best_cv_roc_auc,nonzero_coefficients,total_coefficients
+L1,0.1,0.7809931805024147,11,22
+L2,0.01,0.7801234718327991,22,22

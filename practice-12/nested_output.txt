@@ -1,0 +1,47 @@
+=== Данные ===
+Всего объектов: 3000
+Development: (2400, 11)
+Отложенный test: (600, 11)
+Доля churn=1: 0.3713
+Test не используется во вложенной CV.
+
+=== Обычный GridSearchCV ===
+Комбинаций: 8
+Лучшие параметры: {'model__C': 0.1, 'model__penalty': 'l1'}
+Лучшая оценка CV: 0.781
+Время: 1.63 с
+Внешний фолд 1: ROC-AUC=0.8001, C=0.01, penalty=l2
+Внешний фолд 2: ROC-AUC=0.7615, C=0.01, penalty=l2
+Внешний фолд 3: ROC-AUC=0.7802, C=0.1, penalty=l1
+Внешний фолд 4: ROC-AUC=0.7692, C=0.1, penalty=l1
+Внешний фолд 5: ROC-AUC=0.7919, C=0.1, penalty=l1
+
+=== Результат вложенной CV ===
+Средний ROC-AUC: 0.7806
+Стандартное отклонение: 0.0142
+Время: 0.394 с
+Смещение обычной схемы: 0.0004
+
+=== Сравнение методов поиска ===
+       method  iterations best_cv_roc_auc time_sec                                                      best_parameters
+  Grid Search           8          0.7810    0.165                            {'model__C': 0.1, 'model__penalty': 'l1'}
+Random Search           8          0.7810    0.099 {'model__C': np.float64(0.0745934328572655), 'model__penalty': 'l1'}
+       Optuna           8          0.7810    0.306                          {'C': 0.07459343285726547, 'penalty': 'l1'}
+
+=== L1 против L2 ===
+penalty  best_C best_cv_roc_auc  nonzero_coefficients  total_coefficients
+     L1    0.10          0.7810                    11                  22
+     L2    0.01          0.7801                    22                  22
+
+=== Практическая рекомендация ===
+Вложенная кросс-валидация оправдана, когда датасет небольшой, проводится большой подбор параметров и нужна максимально честная оценка качества.
+Для больших данных или быстрого прототипа её стоимость может быть слишком высокой. Тогда достаточно отдельной test-выборки и обычного GridSearchCV только на train.
+L1 может занулять коэффициенты и выполнять отбор признаков. L2 обычно сохраняет все признаки и плавно уменьшает веса.
+
+=== Созданные файлы ===
+nested_cv_results.csv
+nested_cv_comparison.png
+advanced_search_comparison.csv
+advanced_search_comparison.png
+regularization_results.csv
+regularization_comparison.png

@@ -1,0 +1,4 @@
+method,iterations,best_cv_roc_auc,time_sec,best_parameters
+Grid Search,8,0.7809931805024147,0.16509770800000023,"{'model__C': 0.1, 'model__penalty': 'l1'}"
+Random Search,8,0.7809859348239506,0.09858950000000011,"{'model__C': np.float64(0.0745934328572655), 'model__penalty': 'l1'}"
+Optuna,8,0.7809859348239506,0.3056440829999998,"{'C': 0.07459343285726547, 'penalty': 'l1'}"
