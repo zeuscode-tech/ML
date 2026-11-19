@@ -1,0 +1,20 @@
+name: Проверка практических работ ML
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Получить репозиторий
+        uses: actions/checkout@v4
+
+      - name: Настроить Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Проверить структуру, код и ноутбуки
+        run: python3 check_all.py
